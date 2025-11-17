@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <!-- title will be overwritten by siteConfig.js -->
+  <title id="pageTitleElement">my digital advent calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="page-overlay">
+    <!-- Logo -->
+    <header class="site-header">
+      <img id="siteLogo" class="site-logo" alt="Logo">
+    </header>
+    <main class="calendar-wrapper">
+      <div class="calendar-area" id="calendarArea"></div>
+    </main>
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <span class="footer-item footer-title" id="footerTitle"></span>
+        <button type="button" class="footer-item footer-link-button" id="legalLink">
+          Imprint&nbsp;/&nbsp;Privacy
+        </button>
+        <a href="#" class="footer-item footer-link" id="githubLink">
+          Sourcecode auf GitHub
+        </a>
+      </nav>
+    </footer>
+
+    <div class="calendar-overlay" id="calendarOverlay">
+      <div class="calendar-overlay__panel" id="calendarOverlayPanel">
+        <button class="calendar-overlay__close" id="overlayClose" aria-label="Overlay schließen">
+          &times;
+        </button>
+
+        <h2 class="calendar-overlay__title" id="overlayTitle"></h2>
+        <div class="calendar-overlay__content" id="overlayContent"></div>
+      </div>
+    </div>
+
+    <div class="calendar-overlay" id="legalOverlay">
+      <div class="calendar-overlay__panel" id="legalOverlayPanel">
+        <button class="calendar-overlay__close" id="legalClose" aria-label="Overlay schließen">
+          &times;
+        </button>
+
+        <h2 class="calendar-overlay__title" id="legalTitle"></h2>
+        <div class="calendar-overlay__content" id="legalContent"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/doorContent.js"></script>
+  <script src="scripts/siteConfig.js"></script>
+  <script src=scripts/main.js"></script>
+</body>
+</html>
