@@ -8,7 +8,7 @@ window.SITE_CONFIG = {
   logoSrc: "static/dummylogo.png",
   logoAlt: "this is my dummy logo",
   /* Background image */
-  backgroundImage: "static/dummyback.png",
+  backgroundImage: "static/dummybackground.png",
   /* Footer */
   footerTitle: "My dummy advent calendar",
   githubUrl: "https://github.com/f-hrtmnn/advent_calendar",
