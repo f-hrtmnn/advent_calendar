@@ -17,6 +17,8 @@ window.DOOR_CONTENT = {
                 console.log("notice the blank line before this function?");
           }
         ```
+        bla
+        `
   },
 
   2: {
