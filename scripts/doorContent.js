@@ -21,11 +21,17 @@ window.DOOR_CONTENT = {
         lorem ipsum
         lorem ipsum
         lorem ipsum
+        \`\`\`js
+function hello() {
+  console.log("Hello Winter!");
+}
+\`\`\`
         lorem ipsum
         lorem ipsum
         lorem ipsum
         lorem ipsum
         lorem ipsum
+        ![image](./static/dummylogo.png)
         lorem ipsum
         lorem ipsum
         lorem ipsum

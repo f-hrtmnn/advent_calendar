@@ -1,18 +1,59 @@
 // main.js
 
-// Minimal Markdown-Renderer
+// Minimal Markdown-Renderer with code block + image support
 function mdToHtml(md) {
   if (!md) return "";
-  let s = md.replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;");
 
-  s = s.replace(/\[([^\]]+)]\((https?:\/\/[^\s)]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  // 1) Extract code blocks first and replace with placeholders
+  const codeBlocks = [];
+  md = md.replace(/```([\s\S]*?)```/g, (match, code) => {
+    const id = codeBlocks.length;
+    codeBlocks.push(code);
+    return `§§CODEBLOCK_${id}§§`;
+  });
+
+  // 2) Escape HTML in the remaining text
+  let s = md
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // 3) Images: ![alt](url) – support relative + absolute URLs
+  s = s.replace(/!\[([^\]]*)]\(([^)\s]+)\)/g,
+    '<img src="$2" alt="$1" class="md-image">'
+  );
+
+  // 4) Links: [text](url) – also support relative URLs
+  s = s.replace(/\[([^\]]+)]\(([^)\s]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+  );
+
+  // 5) Bold / italic
   s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   s = s.replace(/\*([^*]+)\*/g, "<em>$1</em>");
-  return "<p>" + s.replace(/\n/g, "<br>") + "</p>";
+
+  // 6) Simple line breaks → <br>
+  s = s.replace(/\n/g, "<br>");
+
+  // 7) Replace code block placeholders with real <pre><code>…</code></pre>
+  s = s.replace(/§§CODEBLOCK_(\d+)§§/g, (match, idxStr) => {
+    const idx = Number(idxStr);
+    const rawCode = codeBlocks[idx] || "";
+
+    // Escape HTML inside code block separately
+    const escCode = rawCode
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+    return `<pre class="md-code-block"><code>${escCode}</code></pre>`;
+  });
+
+  // We don't wrap everything in <p> to avoid nesting issues
+  return s;
 }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const siteConfig  = window.SITE_CONFIG || {};
