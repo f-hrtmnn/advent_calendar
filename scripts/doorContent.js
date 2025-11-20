@@ -2,7 +2,21 @@ window.DOOR_CONTENT = {
 
   1: {
     title: "Day 1 – A Genius Thought",
-    contentMd: `If Mondays had a face, I would politely ask it to leave.`
+    contentMd: `If Mondays had a face, I would politely ask it to leave.
+        ```
+          function test() {
+                console.log("notice the blank line before this function?");
+          }
+        ```
+        blablabla text
+        **hier**
+        da
+        dort
+        ```
+          function test() {
+                console.log("notice the blank line before this function?");
+          }
+        ```
   },
 
   2: {
